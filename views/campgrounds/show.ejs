@@ -1,15 +1,42 @@
 <% layout('layouts/boilerplate') %>
-    <h1><%= campground.title %></h1>
-    <h2><%= campground.location %></h2>
-    <img src="<%= campground.image %>">
-    <p><%= campground.description %></p>
-    <p> <a href="/campgrounds/<%=campground._id%>/edit">Edit</a>
-    </p>
-    <p>
-    <form action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
-        <button>Delete</button>
-    </form>
-    </p>
-    <footer>
-        <a href="/campgrounds">All Campgrounds</a>
-    </footer>
+<div class="row justify-content-md-center">
+  <div class="col-3">
+    <div class="card my-3 mx-1 p-4">
+      <img
+        class="card-img-top mx-3 mt-3 rounded w-auto"
+        src="https://developers.google.com/static/maps/documentation/android-sdk/images/zoom-level-14.png"
+        alt=""
+      />
+      <div class="card-body">
+        <p class="card-text text-secondary fst-italic">
+          <%= campground.location %>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-7">
+    <div class="card my-3 mx-1 p-4">
+      <img
+        class="card-img-top mx-3 mt-3 rounded w-auto"
+        src="<%= campground.image %>"
+        alt=""
+      />
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <h5 class="card-title fw-bold"><%= campground.title %></h5>
+          </div>
+          <div class="col-md-6 text-end">
+            <p class="fw-bold">$<%= campground.price %>/night</p>
+          </div>
+        </div>
+        <p class="card-text text-secondary"><%= campground.description %></p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row justify-content-md-center">
+  <div class="col-3"></div>
+  <div class="col-md-7"></div>
+</div>
