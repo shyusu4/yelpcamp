@@ -1,20 +1,20 @@
 <% layout('layouts/boilerplate') %>
 <div class="row">
-  <% for (let campground of campgrounds) { %>
-  <div class="col-4">
+  <% for (let i = 0; i < campgrounds.length; i++) { %>
+  <div class="col-lg-4 col-md-6 col-sm-6">
     <div class="card my-3 mx-1">
       <img
         class="card-img-top mx-3 mt-3 rounded w-auto"
-        src="<%= campground.image %>"
+        src="<%= campgrounds[i].image %>"
         alt=""
       />
       <div class="card-body">
-        <h5 class="card-title fw-bold"><%= campground.title %></h5>
+        <h5 class="card-title fw-bold"><%= campgrounds[i].title %></h5>
         <p class="card-text text-secondary">
-          <%= campground.description.substring(0, 80) %>...
+          <%= campgrounds[i].description.substring(0, 80) %>...
         </p>
         <a
-          href="/campgrounds/<%=campground._id%>"
+          href="/campgrounds/<%= campgrounds[i]._id %>"
           class="border border-dark-subtle rounded px-4 py-3 text-decoration-none text-dark fw-bold fs-5 d-block text-center"
           >View Campground</a
         >
