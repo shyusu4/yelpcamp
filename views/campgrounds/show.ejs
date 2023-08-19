@@ -71,7 +71,12 @@
             kids loved it!
           </p>
         </div>
-        <button class="btn btn-dark py-3 mt-3 text-end">Leave a Review</button>
+        <input
+          type="button"
+          onclick="location.href='/campgrounds/<%= campground._id %>/review';"
+          value="Leave a Review"
+          class="btn btn-dark py-3 mt-3 text-end"
+        />
       </div>
     </div>
   </div>

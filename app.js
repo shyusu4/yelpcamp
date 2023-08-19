@@ -100,6 +100,14 @@ app.get(
   })
 );
 
+app.get(
+  '/campgrounds/:id/review',
+  catchAsync(async (req, res) => {
+    const campground = await Campground.findById(req.params.id);
+    res.render('campgrounds/review', { campground });
+  })
+);
+
 app.all('*', (req, res, next) => {
   next(new ExpressError('Page Not Found', 404));
 });

@@ -1,0 +1,29 @@
+<% layout('layouts/boilerplate') %>
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="col-lg-6">
+    <h2 class="fw-bold mb-4">Add New Review</h2>
+    <form
+      action="/campgrounds/<%=campground._id%>/review"
+      method="POST"
+      novalidate
+      class="validated-form"
+    >
+      <div class="mb-3">
+        <label for="text" class="form-label" style="font-weight: 500"
+          >Description</label
+        >
+        <textarea
+          id="text"
+          name="review[text]"
+          placeholder="This was probably the best campsite I've ever been to! The view was breathtaking and the facilities were top notch, definitely coming back here again!"
+          class="form-control bg-light border-0 no-resize"
+          rows="8"
+          required
+        ></textarea>
+      </div>
+      <button type="submit" class="btn btn-dark w-100 py-3 mt-3">
+        Post Review
+      </button>
+    </form>
+  </div>
+</div>
