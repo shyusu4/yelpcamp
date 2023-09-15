@@ -54,6 +54,17 @@
             </div>
           </div>
           <p class="card-text text-secondary"><%= review.body %></p>
+          <div class="d-flex justify-content-end">
+            <form
+              action="/campgrounds/<%= campground._id %>/review/<%= review._id %>?_method=DELETE"
+              method="POST"
+              class="d-inline"
+            >
+              <button type="submit" class="btn btn-sm btn-danger">
+                Delete
+              </button>
+            </form>
+          </div>
         </div>
         <% } %>
         <input
