@@ -47,13 +47,14 @@
         <div class="pb-4 border-bottom">
           <div class="row">
             <div class="col-md-6">
-              <p class="card-text fw-bold">Adam Jones</p>
+              <p class="card-text fw-bold"><%= review.author.username %></p>
             </div>
             <div class="col-md-6 text-end">
               <p class="text-secondary">13h ago</p>
             </div>
           </div>
           <p class="card-text text-secondary"><%= review.body %></p>
+          <% if(currentUser && review.author.equals(currentUser._id)) { %>
           <div class="d-flex justify-content-end">
             <form
               action="/campgrounds/<%= campground._id %>/review/<%= review._id %>?_method=DELETE"
@@ -65,14 +66,16 @@
               </button>
             </form>
           </div>
+          <% } %>
         </div>
-        <% } %>
+        <% } %> <% if(currentUser) { %>
         <input
           type="button"
           onclick="location.href='/campgrounds/<%= campground._id %>/review';"
           value="Leave a Review"
           class="btn btn-dark py-3 mt-3 text-end"
         />
+        <% } %>
       </div>
     </div>
   </div>
