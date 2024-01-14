@@ -2,7 +2,13 @@
 <div class="container d-flex justify-content-center align-items-center vh-100">
   <div class="col-lg-6">
     <h2 class="fw-bold mb-4">Add New Campground</h2>
-    <form action="/campgrounds" method="POST" novalidate class="validated-form">
+    <form
+      action="/campgrounds"
+      method="POST"
+      novalidate
+      class="validated-form"
+      enctype="multipart/form-data"
+    >
       <div class="mb-3">
         <label for="title" class="form-label" style="font-weight: 500"
           >Campground Name</label
@@ -36,8 +42,7 @@
         <input
           type="text"
           id="image"
-          name="campground[image]"
-          placeholder="https://images.unsplash.com/photo-1627300008477-4b7b0b0b0b0b"
+          name="campground[location]"
           class="form-control bg-light border-0 input-height"
           required
         />
