@@ -1,11 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
-  </head>
-  <body>
-    <h1>Home</h1>
-  </body>
-</html>
+<% layout('layouts/boilerplate') %>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-md-6 order-2 order-md-2">
+      <div class="flex flex-col">
+        <h1>Explore the best camps on Earth.</h1>
+        <p>
+          YelpCamp is a curated list of the best camping spots on Earth.
+          Unfiltered and unbiased reviews.
+        </p>
+        <ul class="">
+          <li>Add your own camp suggestions.</li>
+          <li>Leave reviews for your favorite campsites.</li>
+          <li>Search for campsites by location.</li>
+        </ul>
+        <a href="/campgrounds" class="btn btn-lg btn-primary"
+          >View Campgrounds</a
+        >
+        <div>
+          <span>Partnered with:</span>
+          <div class="flex flex-row">
+            <img src="/assets/Airbnb.svg" alt="" />
+            <img src="/assets/Booking.svg" alt="" />
+            <img src="/assets/Plum Guide.svg" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 order-1 order-md-1">
+      <img
+        src="/assets/Hero Image (Tablet and Mobile).jpg"
+        alt=""
+        class="img-fluid d-block d-md-none"
+      />
+    </div>
+    <div class="col-md-6 order-3">
+      <img
+        src="/assets/Hero Image.jpg"
+        alt=""
+        class="img-fluid d-none d-md-block"
+      />
+    </div>
+  </div>
+</div>

@@ -1,4 +1,7 @@
 const Campground = require('../models/campground');
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
+const mapBoxToken = process.env.MAPBOX_TOKEN;
+const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 
 module.exports.index = async (req, res) => {
   const campgrounds = await Campground.find({});
@@ -10,15 +13,23 @@ module.exports.renderNewForm = (req, res) => {
 };
 
 module.exports.createCampground = async (req, res, next) => {
+  const geoData = await geocoder
+    .forwardGeocode({
+      query: req.body.campground.location,
+      limit: 1,
+    })
+    .send();
   const campground = new Campground(req.body.campground);
   campground.author = req.user._id;
+  campground.geometry = geoData.body.features[0].geometry;
   await campground.save();
   req.flash('success', 'Successfully made a new campground!');
   res.redirect(`/campgrounds/${campground._id}`);
 };
 
 module.exports.showCampground = async (req, res) => {
-  const campground = await Campground.findById(req.params.id)
+  const { id } = req.params;
+  const campground = await Campground.findById(id)
     .populate({
       path: 'reviews',
       populate: {
@@ -26,11 +37,18 @@ module.exports.showCampground = async (req, res) => {
       },
     })
     .populate('author');
+
+  let isCommented = false;
+  for (campgroundReview of campground.reviews) {
+    if (req.user && campgroundReview.author.username === req.user.username) {
+      isCommented = true;
+    }
+  }
   if (!campground) {
     req.flash('error', 'Cannot find that campground!');
     return res.redirect('/campgrounds');
   }
-  res.render('campgrounds/show', { campground });
+  res.render('campgrounds/show', { campground, isCommented });
 };
 
 module.exports.renderEditForm = async (req, res) => {
